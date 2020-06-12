@@ -1,8 +1,9 @@
 package br.edu.logatti.aula8.service;
 
 import br.edu.logatti.aula8.exception.ResourceNotFoundException;
-import br.edu.logatti.aula8.model.Produto;
+import br.edu.logatti.aula8.model.entity.Produto;
 import br.edu.logatti.aula8.repository.ProdutoRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,10 +11,10 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@AllArgsConstructor
 public class ProdutoService {
 
-    @Autowired
-    private ProdutoRepository repository;
+    private final ProdutoRepository repository;
 
     public Produto save(final Produto produto) {
         return repository.save(produto);

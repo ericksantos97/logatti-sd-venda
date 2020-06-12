@@ -1,25 +1,25 @@
 package br.edu.logatti.aula8.controller;
 
 import br.edu.logatti.aula8.constant.Constant;
-import br.edu.logatti.aula8.model.Venda;
-import br.edu.logatti.aula8.model.request.VendaRequest;
+import br.edu.logatti.aula8.model.entity.Venda;
+import br.edu.logatti.aula8.model.vo.VendaVO;
 import br.edu.logatti.aula8.service.VendaService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
+@RequiredArgsConstructor
 @RestController
 @RequestMapping(path = Constant.VENDA_API)
 public class VendaController {
 
-    @Autowired
-    private VendaService service;
+    private final VendaService service;
 
     @PostMapping
-    public ResponseEntity<Venda> save(@RequestBody final VendaRequest request) {
+    public ResponseEntity<Venda> save(@RequestBody final VendaVO request) {
         return ResponseEntity.ok().body(service.save(request));
     }
 
@@ -29,7 +29,7 @@ public class VendaController {
     }
 
     @PutMapping
-    public ResponseEntity<Venda> update(@RequestBody final VendaRequest request) {
+    public ResponseEntity<Venda> update(@RequestBody final VendaVO request) {
         return ResponseEntity.ok().body(service.save(request));
     }
 

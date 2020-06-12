@@ -1,9 +1,10 @@
 package br.edu.logatti.aula8.service;
 
 import br.edu.logatti.aula8.exception.ResourceNotFoundException;
-import br.edu.logatti.aula8.model.Compra;
-import br.edu.logatti.aula8.model.request.CompraRequest;
+import br.edu.logatti.aula8.model.entity.Compra;
+import br.edu.logatti.aula8.model.vo.CompraVO;
 import br.edu.logatti.aula8.repository.CompraRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,17 +12,14 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@AllArgsConstructor
 public class CompraService {
 
-    @Autowired
-    private CompraRepository repository;
+    private final CompraRepository repository;
+    private final ProdutoService produtoService;
+    private final FornecedorService fornecedorService;
 
-    @Autowired
-    private ProdutoService produtoService;
-    @Autowired
-    private FornecedorService fornecedorService;
-
-    public Compra save(final CompraRequest request) {
+    public Compra save(final CompraVO request) {
         Compra compra = new Compra();
         compra.set_id(request.get_id());
         compra.setDescricao(request.getDescricao());

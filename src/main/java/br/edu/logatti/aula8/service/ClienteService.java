@@ -1,8 +1,9 @@
 package br.edu.logatti.aula8.service;
 
 import br.edu.logatti.aula8.exception.ResourceNotFoundException;
-import br.edu.logatti.aula8.model.Cliente;
+import br.edu.logatti.aula8.model.entity.Cliente;
 import br.edu.logatti.aula8.repository.ClienteRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,10 +11,10 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@AllArgsConstructor
 public class ClienteService {
 
-    @Autowired
-    private ClienteRepository repository;
+    private final ClienteRepository repository;
 
     public Cliente save(final Cliente cliente) {
         return repository.save(cliente);

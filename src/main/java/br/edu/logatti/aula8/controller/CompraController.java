@@ -1,9 +1,10 @@
 package br.edu.logatti.aula8.controller;
 
 import br.edu.logatti.aula8.constant.Constant;
-import br.edu.logatti.aula8.model.Compra;
-import br.edu.logatti.aula8.model.request.CompraRequest;
+import br.edu.logatti.aula8.model.entity.Compra;
+import br.edu.logatti.aula8.model.vo.CompraVO;
 import br.edu.logatti.aula8.service.CompraService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,15 +12,15 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+@RequiredArgsConstructor
 @RestController
 @RequestMapping(path = Constant.COMPRA_API)
 public class CompraController {
 
-    @Autowired
-    private CompraService service;
+    private final CompraService service;
 
     @PostMapping
-    public ResponseEntity<Compra> save(@RequestBody final CompraRequest request) {
+    public ResponseEntity<Compra> save(@RequestBody final CompraVO request) {
         return ResponseEntity.ok().body(service.save(request));
     }
 
@@ -29,7 +30,7 @@ public class CompraController {
     }
 
     @PutMapping
-    public ResponseEntity<Compra> update(@RequestBody final CompraRequest request) {
+    public ResponseEntity<Compra> update(@RequestBody final CompraVO request) {
         return ResponseEntity.ok().body(service.save(request));
     }
 

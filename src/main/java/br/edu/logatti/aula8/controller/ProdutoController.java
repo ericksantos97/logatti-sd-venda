@@ -1,8 +1,9 @@
 package br.edu.logatti.aula8.controller;
 
 import br.edu.logatti.aula8.constant.Constant;
-import br.edu.logatti.aula8.model.Produto;
+import br.edu.logatti.aula8.model.entity.Produto;
 import br.edu.logatti.aula8.service.ProdutoService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,12 +11,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+@RequiredArgsConstructor
 @RestController
 @RequestMapping(path = Constant.PRODUTO_API)
 public class ProdutoController {
 
-    @Autowired
-    private ProdutoService service;
+    private final ProdutoService service;
 
     @PostMapping
     public ResponseEntity<Produto> save(@RequestBody final Produto produto) {
