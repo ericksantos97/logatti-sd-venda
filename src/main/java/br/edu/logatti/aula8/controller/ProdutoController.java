@@ -19,8 +19,9 @@ public class ProdutoController {
     private final ProdutoService service;
 
     @PostMapping
-    public ResponseEntity<Produto> save(@RequestBody final Produto produto) {
-        return ResponseEntity.ok().body(service.save(produto));
+    public ResponseEntity save(@RequestBody final Produto produto) {
+        service.sendRabbit(produto);
+        return ResponseEntity.ok().build();
     }
 
     @GetMapping

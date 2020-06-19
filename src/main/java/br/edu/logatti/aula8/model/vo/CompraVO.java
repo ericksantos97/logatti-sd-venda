@@ -11,7 +11,7 @@ public class CompraVO implements Serializable {
 
     private static final long serialVersionUID = -8269687861669915577L;
 
-    private String _id;
+    private String id;
     private String descricao;
     private String produtoId;
     private String fornecedorId;

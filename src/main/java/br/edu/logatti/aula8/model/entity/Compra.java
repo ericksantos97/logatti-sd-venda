@@ -15,7 +15,7 @@ public class Compra implements Serializable {
     private static final long serialVersionUID = 8175078993704463794L;
 
     @Id
-    private String _id;
+    private String id;
     private String descricao;
     private Produto produto;
     private Fornecedor fornecedor;

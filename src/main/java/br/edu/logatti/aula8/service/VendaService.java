@@ -3,6 +3,7 @@ package br.edu.logatti.aula8.service;
 import br.edu.logatti.aula8.exception.ResourceNotFoundException;
 import br.edu.logatti.aula8.model.entity.Venda;
 import br.edu.logatti.aula8.model.vo.VendaVO;
+import br.edu.logatti.aula8.rabbit.producer.VendaProducer;
 import br.edu.logatti.aula8.repository.VendaRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,10 +20,15 @@ public class VendaService {
     private final VendaRepository repository;
     private final ProdutoService produtoService;
     private final ClienteService clienteService;
+    private final VendaProducer vendaProducer;
+
+    public void sendRabbit(final VendaVO request) {
+        vendaProducer.send(request);
+    }
 
     public Venda save(final VendaVO request) {
         Venda venda = new Venda();
-        venda.set_id(request.get_id());
+        venda.setId(request.getId());
         venda.setDescricao(request.getDescricao());
         venda.setProduto(produtoService.findById(request.getProdutoId()).get());
         venda.setCliente(clienteService.findById(request.getClienteId()).get());

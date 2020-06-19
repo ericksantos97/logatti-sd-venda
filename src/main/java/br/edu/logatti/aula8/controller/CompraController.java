@@ -5,7 +5,6 @@ import br.edu.logatti.aula8.model.entity.Compra;
 import br.edu.logatti.aula8.model.vo.CompraVO;
 import br.edu.logatti.aula8.service.CompraService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,8 +19,9 @@ public class CompraController {
     private final CompraService service;
 
     @PostMapping
-    public ResponseEntity<Compra> save(@RequestBody final CompraVO request) {
-        return ResponseEntity.ok().body(service.save(request));
+    public ResponseEntity save(@RequestBody final CompraVO compraRequest) {
+        service.sendRabbit(compraRequest);
+        return ResponseEntity.ok().build();
     }
 
     @GetMapping

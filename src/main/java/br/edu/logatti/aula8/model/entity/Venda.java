@@ -16,7 +16,7 @@ public class Venda implements Serializable {
     private static final long serialVersionUID = -5656398723290810962L;
 
     @Id
-    private String _id;
+    private String id;
     private String descricao;
     private LocalDate data;
     private Produto produto;

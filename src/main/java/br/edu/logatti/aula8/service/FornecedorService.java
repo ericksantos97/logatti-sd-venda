@@ -2,6 +2,7 @@ package br.edu.logatti.aula8.service;
 
 import br.edu.logatti.aula8.exception.ResourceNotFoundException;
 import br.edu.logatti.aula8.model.entity.Fornecedor;
+import br.edu.logatti.aula8.rabbit.producer.FornecedorProducer;
 import br.edu.logatti.aula8.repository.FornecedorRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,11 @@ import java.util.Optional;
 public class FornecedorService {
 
     private final FornecedorRepository repository;
+    private final FornecedorProducer fornecedorProducer;
+
+    public void sendRabbit(final Fornecedor fornecedor) {
+        fornecedorProducer.send(fornecedor);
+    }
 
     public Fornecedor save(final Fornecedor fornecedor) {
         return repository.save(fornecedor);

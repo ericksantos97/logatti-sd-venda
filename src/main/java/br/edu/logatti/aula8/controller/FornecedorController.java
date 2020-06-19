@@ -19,8 +19,9 @@ public class FornecedorController {
     private final FornecedorService service;
 
     @PostMapping
-    public ResponseEntity<Fornecedor> save(@RequestBody final Fornecedor fornecedor) {
-        return ResponseEntity.ok().body(service.save(fornecedor));
+    public ResponseEntity save(@RequestBody final Fornecedor fornecedor) {
+        service.sendRabbit(fornecedor);
+        return ResponseEntity.ok().build();
     }
 
     @GetMapping
